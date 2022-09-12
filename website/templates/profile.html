@@ -1,0 +1,132 @@
+{% extends "main.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Page Title Section -->
+<div class="page-title-section" style="background-image: url('{%static 'website/images/main-slider/1.jpg' %}')">
+    <div class="auto-container">
+        <h1>Profile</h1>
+        <ul class="post-meta">
+            <li><a href="/">Home</a></li>
+            <li>profile</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-2 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{%static 'website/images/Momo.jpg' %}"><span class="font-weight-bold">{{user.first_name}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-6 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile</h4>
+                </div>
+                
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">First name</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.first_name}}
+                          </div>
+                          <hr>
+                        </div>
+                            <div class="row">
+                            <div class="col-sm-3">
+                              <h6 class="mb-0">Last name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{user.last_name}}
+                            </div>
+                          </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.email}}
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <h6 class="mb-0">Phone number</h6>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            {{user.client_user.phone_number}}
+                          </div>
+                        </div>
+                        <hr>
+                        
+                      </div>
+                    </div>
+                
+                
+                <div class="mt-5 text-center">
+                    <a href="/update/" class="button-27" role="button" style="width:250px">Update Profile</a>
+                    <a href="/procedures/" class="button-27" role="button" style="width:250px">Make an Appointment</a>
+                    
+                </div>
+            </div>
+        </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Appointments</span></div><br>
+                    <div class="col-md-12"><label class="labels">
+                        <h3>Pending</h3>
+                            {% for visit in visits %}
+                                {% if visit.status == 'pending' %}
+                                    {{visit.procedure}}
+                                    {{visit.visit_date}}
+                                    {{visit.visit_time}}
+                                    {{visit.status}}
+                                    {{visit.employee_first_name}} {{visit.employee_last_name}}
+                                    {{visit.price}} zł
+                                    <pre></pre>
+                                {% endif %}
+                            {% endfor %}
+                            <pre></pre>
+                        
+                    </label></div> <br>
+                    <div class="col-md-12"><label class="labels"><h3>History</h3>
+                        {% for visit in visits %}
+                            {% if visit.status == 'done' %}
+                                {{visit.procedure}}
+                                {{visit.visit_date}}
+                                {{visit.visit_time}}
+                                {{visit.status}}
+                                {{visit.employee_first_name}} {{visit.employee_last_name}}
+                                {{visit.price}} zł
+                                <pre></pre>
+                            {% endif %}
+                        {% endfor %}
+                        <pre></pre></label>
+                    </div>
+
+                        <div class="col-md-12"><label class="labels"><h3>Cancelled</h3>
+                            {% for visit in visits %}
+                                {% if visit.status == 'cancelled' %}
+                                    {{visit.procedure}}
+                                    {{visit.visit_date}}
+                                    {{visit.visit_time}}
+                                    {{visit.employee_first_name}} {{visit.employee_last_name}}
+                                    {{visit.price}} zł
+                                    <pre></pre>
+                                {% endif %}
+                            {% endfor %}</label>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

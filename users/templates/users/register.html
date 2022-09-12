@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% block content %}
+{% load static %}
+		<!-- Page Title Section -->
+		<div class="page-title-section" style="background-image: url('{%static 'website/images/main-slider/1.jpg' %}')">
+			<div class="auto-container">
+				<h1>Register</h1>
+				<ul class="post-meta">
+					<li><a href="">Home</a></li>
+					<li>Register</li>
+				</ul>
+			</div>
+		</div>
+		<!-- End Page Title Section -->
+
+		{% load crispy_forms_tags %}
+			<div class="container">
+				<div class="card card-container">
+					
+					<form method="POST">
+						{% csrf_token %}
+						<fieldset class="form-group">
+							{{ user_form|crispy }}
+							{{ client_form|crispy }}
+						</fieldset>
+						<div class="form-group">
+							<button class="button-27" style="width:250px" role="button" type="submit">Create an account</button>
+						</div>
+					</form>
+					<div class="border-top pt-3">
+						<small class="text">
+							<a class="ml-2" href="/login/">Already have an account? Sign in!</a>
+						</small>
+					</div>
+
+				</div>
+			</div>
+
+			{% endblock content %}
