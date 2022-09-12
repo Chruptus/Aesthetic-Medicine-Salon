@@ -3,7 +3,6 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-p0l**xg849e9l-)^(fkuzg^uvm91uj&fi)s*y!#ujvhw4w$i$s'
 
 DEBUG = True
 
